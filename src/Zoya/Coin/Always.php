@@ -8,7 +8,7 @@ namespace Zoya\Coin;
 class Always extends Generic
 {
     /**
-     * Veru lucky :-)
+     * Very lucky :-)
      * @return bool
      */
     public function checkLuck()
