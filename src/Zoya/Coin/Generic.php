@@ -1,6 +1,8 @@
 <?php
 namespace Zoya\Coin;
 
+use Symfony\Component\Yaml\Exception\RuntimeException;
+
 abstract class Generic implements \Zoya\Coin\CoinInterface
 {
     const TAILS = 'tails';
@@ -10,6 +12,11 @@ abstract class Generic implements \Zoya\Coin\CoinInterface
      * @var string
      */
     protected $expectedSide;
+
+    /**
+     * @var
+     */
+    protected $currentSide;
     /**
      * Counter
      * @var int
@@ -30,13 +37,21 @@ abstract class Generic implements \Zoya\Coin\CoinInterface
         $this->expectedSide = $expectedSide;
     }
 
+    public function getCurrentSide()
+    {
+        if (!isset($this->currentSide)) {
+            throw new \RuntimeException('Current side is unknown. Flip the coin!');
+        }
+        return $this->currentSide;
+    }
+
     /**
      * @param $side
      * @return string
      */
     public function getOppositeSide($side)
     {
-        return $side === self::TAILS?  self::TAILS : self::HEADS;
+        return $side === self::TAILS?  self::HEADS : self::TAILS;
     }
 
     /**
@@ -47,10 +62,8 @@ abstract class Generic implements \Zoya\Coin\CoinInterface
     {
         $this->counter++;
         unset($this->isLucky);
-        if ($this->isLucky()) {
-            return $this->expectedSide;
-        }
-        return $this->getOppositeSide($this->expectedSide);
+        $this->currentSide = $this->isLucky()? $this->expectedSide : $this->getOppositeSide($this->expectedSide);
+        return $this->currentSide;
     }
 
     /**
