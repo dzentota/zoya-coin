@@ -12,7 +12,7 @@ class Even extends Generic
      * Returns true if $this->counter is even
      * @return bool
      */
-    public function checkLuck()
+    protected function checkLuck()
     {
         return (bool)!($this->counter % 2);
     }

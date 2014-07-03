@@ -11,7 +11,7 @@ class Always extends Generic
      * Very lucky :-)
      * @return bool
      */
-    public function checkLuck()
+    protected function checkLuck()
     {
         return true;
     }

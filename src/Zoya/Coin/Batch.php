@@ -33,7 +33,7 @@ class Batch extends Generic
      * Returns true every $batchSize time
      * @return bool
      */
-    public function checkLuck()
+    protected function checkLuck()
     {
         if (0 == $this->counter % $this->getBatchSize()) {
             return true;
