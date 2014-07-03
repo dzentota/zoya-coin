@@ -19,8 +19,8 @@ class Probability extends Generic
     public function setPercents($percents)
     {
         Assertion::integer($percents, 'Number of percents should be integer');
-        Assertion::min(1, 'Number of percents should be more than 0');
-        Assertion::max(100, 'Number of percents should not be more than 100');
+        Assertion::min($percents, 1, 'Number of percents should be more than 0');
+        Assertion::max($percents, 100, 'Number of percents should not be more than 100');
         $this->percents = $percents;
         return $this;
     }

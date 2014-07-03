@@ -14,6 +14,6 @@ class Even extends Generic
      */
     public function checkLuck()
     {
-        return (bool)(!$this->counter % 2);
+        return (bool)!($this->counter % 2);
     }
 }
